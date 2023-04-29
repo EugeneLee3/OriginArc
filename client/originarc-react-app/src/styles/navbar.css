@@ -1,0 +1,34 @@
+.horizontal-navbar {
+    width: 100%;
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: left;
+}
+
+.horizontal-navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.horizontal-navbar li {
+    display: inline-block;
+    margin-right: 1.5em;
+    margin-left: 1.5em;
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    text-decoration: none;
+}
+
+.horizontal-navbar a {
+    color: white;
+    text-decoration: none;
+}

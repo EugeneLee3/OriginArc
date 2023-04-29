@@ -1,0 +1,11 @@
+.landing-banner {
+    width: 100%;
+    background-color: gray;
+    align-items: center;
+    justify-content: center;
+}
+
+.landing-banner a {
+    color: black;
+    text-decoration: none;
+}
