@@ -1,5 +1,77 @@
-.description-box {
-    min-height: 30em;
-    margin-top: 2.5em;
-    padding: 1em;
+/* .form-content {
 }
+
+.response-content {
+}
+
+.description-box {
+    height: 20em;
+    background-color: blue;
+    flex-basis: 50%;
+}
+.description-box textarea {
+    height: 100%;
+    width: 50%;
+}
+
+.response-list {
+    height: 20em;
+    background-color: red;
+    flex-basis: 50%;
+}
+
+.left-box {
+    width: 50%;
+    height: 30em;
+    display: inline-block;
+}
+
+.right-box {
+    width: 50%;
+    height: 30em;
+    display: inline-block;
+} */
+
+.form-content {
+   float: right; 
+   width: 50%;
+}
+
+.response-content {
+    float: left;
+    width: 50%;
+}
+
+.description-box {
+  height: 20em;
+  width: 100%;
+}
+.description-box textarea {
+  height: 100%;
+  width: 50%;
+}
+
+.response-list {
+  height: 20em;
+  width: 100%;
+}
+
+.left-box {
+  width: 50%;
+  height: 30em;
+  display: inline-block;
+}
+
+.right-box {
+  width: 50%;
+  height: 30em;
+  display: inline-block;
+}
+
+@media screen and (max-width: 600px) {
+    .left-box, .right-box {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
