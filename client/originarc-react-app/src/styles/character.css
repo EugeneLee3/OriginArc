@@ -1,45 +1,11 @@
-/* .form-content {
-}
-
-.response-content {
-}
-
-.description-box {
-    height: 20em;
-    background-color: blue;
-    flex-basis: 50%;
-}
-.description-box textarea {
-    height: 100%;
-    width: 50%;
-}
-
-.response-list {
-    height: 20em;
-    background-color: red;
-    flex-basis: 50%;
-}
-
-.left-box {
-    width: 50%;
-    height: 30em;
-    display: inline-block;
-}
-
-.right-box {
-    width: 50%;
-    height: 30em;
-    display: inline-block;
-} */
-
 .form-content {
-   float: right; 
-   width: 50%;
+   width: 100%;
+   padding: 2em;
+   box-sizing: border-box;
 }
 
 .response-content {
-    float: left;
-    width: 50%;
+    width: 100%;
 }
 
 .description-box {
@@ -48,7 +14,7 @@
 }
 .description-box textarea {
   height: 100%;
-  width: 50%;
+  width: 100%;
 }
 
 .response-list {
@@ -60,12 +26,20 @@
   width: 50%;
   height: 30em;
   display: inline-block;
+  background-color: blue;
 }
 
 .right-box {
   width: 50%;
   height: 30em;
   display: inline-block;
+  background-color: red;
+}
+
+.middle-box {
+  width: 100%;
+  height: 30em;
+  background-color: green;
 }
 
 @media screen and (max-width: 600px) {

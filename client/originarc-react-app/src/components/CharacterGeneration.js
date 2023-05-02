@@ -6,25 +6,54 @@ import '../styles/character.css';
 function CharacterGeneration() {
   const [userPrompt, setUserPrompt] = useState('');
   const [promptOutput, setPromptOutput] = useState('');
+  const [characterName, setCharacterName] = useState('');
   const [stage, setStage] = useState(1);
 
-  const handleTextChange = (event) => {
+  const handlePromptChange = (event) => {
     setUserPrompt(event.target.value);
   };
 
-  const handleSubmit = async (event) => {
+  const handleNameChange = (event) => {
+    setCharacterName(event.target.value);
+  }
+
+  const handlePromptSubmit = async (event) => {
     event.preventDefault();
     if (!(userPrompt==='')) {
       setStage(stage+1)
       try {
         const response = await axios.post('http://localhost:5000/generate', { userPrompt })
-        setPromptOutput(response);
+        setPromptOutput(response.data); 
       } catch (error) {
         console.log(error.response.data.message)
       }
     }
   };
-  
+
+  const handleCharacterSubmit = (event) => {
+    event.preventDefault();
+    if (!(characterName==='')) {
+      setStage(stage+1)
+      try {
+        setCharacterName(characterName);
+      } catch (error) {
+        console.log(error.response.data.message)
+      }
+    }
+  }
+
+  const handlePromptClear = (event) => {
+    setPromptOutput('');
+    setUserPrompt('');
+  };
+
+  const handleCharacterClear = (event) => {
+    setCharacterName('');
+  };
+
+  const handlePrevious = (event) => {
+    setStage(stage-1);
+  };
 
   const handleRegenerate = (event) => {
     if (promptOutput==='') {
@@ -32,38 +61,76 @@ function CharacterGeneration() {
     } else {
       setPromptOutput('regenerated output');
     }
-  }
-
-  const handleClear = (event) => {
-    setPromptOutput('');
-    setUserPrompt('');
-  }
-
-  const handleNext = (event) => {
-    setStage(stage+1);
-  }
-
-  const handlePrevious = (event) => {
-    setStage(stage-1);
-  }
+  };
 
   return (
     <>
       {stage===1 && (
-        <div className='left-box'>
-          <div className='form-content'>
+        <>
+          <div className='middle-box'>
+            <div className='form-content'>
 
-            <form onSubmit={handleSubmit}>
-              <label>Your Character Description:</label>
+              <form onSubmit={handlePromptSubmit}>
+                <label>Your Character Description:</label>
+
+                <br />
+                <br />
+
+                <div className='description-box'>
+                  <textarea
+                    value={userPrompt}
+                    onChange={handlePromptChange}
+                    type="text"
+                    autoComplete="off"
+                  />
+                </div>
+
+                <br />
+                <br />
+
+                <button type='submit'>submit</button>
+                <button onClick={handlePromptClear}>clear</button>
+              </form>
+
+            </div>
+          </div>
+        </>
+      )}
+
+      {stage === 2 && (
+        <>
+          <div className='left-box'>
+            <div className='response-content'>
+
+              <span>Here is a list of possible character names: </span>
+
+              <br />
+              <br />
+
+              <div className='response-list'>
+                <span>{promptOutput}</span>
+              </div>
+
+              <br />
+              <br />
+
+              <button onClick={handleRegenerate}>Regenerate Responses</button>
+              <button onClick={handlePrevious}>Back</button>
+
+            </div>
+          </div>
+
+          <div className='right-box'>
+            <form onSubmit={handleCharacterSubmit}>
+              <label>The name you have chosen for your character:</label>
 
               <br />
               <br />
 
               <div className='description-box'>
-                <textarea
-                  value={userPrompt}
-                  onChange={handleTextChange}
-                  maxLength={100}
+                <input
+                  value={characterName}
+                  onChange={handleNameChange}
                   type="text"
                   autoComplete="off"
                 />
@@ -73,58 +140,25 @@ function CharacterGeneration() {
               <br />
 
               <button type='submit'>submit</button>
-              <button onClick={handleClear}>clear</button>
+              <button onClick={handleCharacterClear}>clear</button>
             </form>
-
           </div>
-        </div>
-      )}
-
-      {stage === 2 && (
-        <div className='left-box'>
-          <div className='response-content'>
-
-            <span>Here is a list of possible character names: </span>
-
-            <br />
-            <br />
-
-            <div className='response-list'>
-              <span>{promptOutput}</span>
-            </div>
-
-            <br />
-            <br />
-
-            <button onClick={handleRegenerate}>Regenerate Responses</button>
-            <button onClick={handlePrevious}>Back</button>
-            <button onClick={handleNext}>Next</button>
-
-          </div>
-        </div>
+        </>
       )}
 
       {stage === 3 && (
-        <div className='left-box'>
-          <div className='response-content'>
+        <>
+          <div className='middle-box'>
+            <div className='response-content'>
 
-            <span>Here is a list of possible character names: </span>
+              <span>{characterName}</span>
 
-            <br />
-            <br />
+              <button onClick={handlePrevious}>Back</button>
+              {/* <button onClick={handleNext}>Next</button> */}
 
-            <div className='response-list'>
-              <span>{promptOutput}</span>
             </div>
-
-            <br />
-            <br />
-
-            <button onClick={handleRegenerate}>Regenerate Responses</button>
-            <button onClick={handlePrevious}>Back</button>
-
           </div>
-        </div>
+        </>
       )}
       
     </>
