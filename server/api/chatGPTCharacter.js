@@ -35,7 +35,7 @@ const generateList = async (text) => {
 
 
 const generateImage = async (text, name) => {
-  const prompt = `Generate me an original, realistic and detailed image of a character based on the name: ${name} and the description: ${text}. Please only provide the image of the character without any unrequired text.`;
+  const prompt = `Generate me a realistic image of a character named ${name} and the description: ${text}.`;
   const apiKey = process.env.CHATGPT_API_KEY;
 
   const config = new Configuration({
