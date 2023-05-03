@@ -5,6 +5,7 @@ const dotenv = require("dotenv").config();
 
 //
 const { generateNameRoutes } = require('./routes/generateNameRoutes');
+const { generateImageRoutes } = require('./routes/generateImageRoutes');
 
 //
 const app = express();
@@ -13,6 +14,7 @@ app.use(cors());
 
 //
 app.use(generateNameRoutes(express, cors));
+app.use(generateImageRoutes(express, cors));
 
 const startServer = async () => {
   try {
