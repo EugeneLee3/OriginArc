@@ -12,6 +12,7 @@ function Navbar() {
       <nav className='horizontal-navbar'>
         <ul>
           <li><Link to='/'><HomeIcon /></Link></li>
+          <li>Eugene Lee</li>
         </ul>
       </nav>
     </>

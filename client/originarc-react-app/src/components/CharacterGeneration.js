@@ -7,6 +7,7 @@ function CharacterGeneration() {
   const [userPrompt, setUserPrompt] = useState('');
   const [promptOutput, setPromptOutput] = useState('');
   const [characterName, setCharacterName] = useState('');
+  const [image, setImage] = useState('');
   const [stage, setStage] = useState(1);
 
   const handlePromptChange = (event) => {
@@ -19,6 +20,8 @@ function CharacterGeneration() {
 
   const handlePromptSubmit = async (event) => {
     event.preventDefault();
+    setPromptOutput('');
+    setCharacterName('');
     if (!(userPrompt==='')) {
       setStage(stage+1)
       try {
@@ -30,17 +33,33 @@ function CharacterGeneration() {
     }
   };
 
-  const handleCharacterSubmit = (event) => {
+  const handleCharacterSubmit = async (event) => {
     event.preventDefault();
+    setImage('');
     if (!(characterName==='')) {
       setStage(stage+1)
       try {
         setCharacterName(characterName);
+        const response = await axios.post('http://localhost:5000/image', { characterName, userPrompt })
+        setImage(response.data);
       } catch (error) {
         console.log(error.response.data.message)
       }
     }
   }
+
+  const handleRegenerate = async (event) => {
+      if (promptOutput==='') {
+        setPromptOutput('');
+      } else {
+        try {
+          const response = await axios.post('http://localhost:5000/generate', { userPrompt })
+          setPromptOutput(response.data); 
+        } catch (error) {
+          console.log(error.response.data.message)
+        }
+      }
+    };
 
   const handlePromptClear = (event) => {
     setPromptOutput('');
@@ -55,13 +74,7 @@ function CharacterGeneration() {
     setStage(stage-1);
   };
 
-  const handleRegenerate = (event) => {
-    if (promptOutput==='') {
-      setPromptOutput('');
-    } else {
-      setPromptOutput('regenerated output');
-    }
-  };
+  
 
   return (
     <>
@@ -108,7 +121,9 @@ function CharacterGeneration() {
               <br />
 
               <div className='response-list'>
-                <span>{promptOutput}</span>
+                {promptOutput[0] && promptOutput[0].map((item, index) => (
+                  <span key={index}>{item}<br/></span>
+                ))}
               </div>
 
               <br />
@@ -151,10 +166,19 @@ function CharacterGeneration() {
           <div className='middle-box'>
             <div className='response-content'>
 
-              <span>{characterName}</span>
+              <span>Here are images generated based off the name you provided: {characterName}, and the description: {userPrompt}.</span>
+
+              <br />
+
+              <div>
+                {image && image.map((url, index) => (
+                <img src={url} alt='' key={index}/>
+              ))}
+              </div>
+
+              <br/>
 
               <button onClick={handlePrevious}>Back</button>
-              {/* <button onClick={handleNext}>Next</button> */}
 
             </div>
           </div>

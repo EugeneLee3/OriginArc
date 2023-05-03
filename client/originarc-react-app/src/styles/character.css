@@ -1,7 +1,5 @@
 .form-content {
    width: 100%;
-   padding: 2em;
-   box-sizing: border-box;
 }
 
 .response-content {
@@ -26,20 +24,29 @@
   width: 50%;
   height: 30em;
   display: inline-block;
-  background-color: blue;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+  box-sizing: border-box;
 }
 
 .right-box {
   width: 50%;
   height: 30em;
   display: inline-block;
-  background-color: red;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+  box-sizing: border-box;
 }
 
 .middle-box {
   width: 100%;
   height: 30em;
-  background-color: green;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+  box-sizing: border-box;
 }
 
 @media screen and (max-width: 600px) {

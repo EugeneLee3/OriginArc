@@ -7,8 +7,15 @@ function Home() {
   return (
     <>
         <div className='landing-banner'>
+
+          <div className='big-title'>
+            Welcome to the Character Name Generator
+          </div>
           
-          <Link to='/generate'>use the tool!</Link>
+          <div className='big-button'>
+            <Link to='/generate'>Generate Names</Link>
+          </div>
+          
 
         </div>
     </>

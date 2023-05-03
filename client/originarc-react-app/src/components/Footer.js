@@ -5,9 +5,7 @@ import '../styles/footer.css'
 function Footer() {
   return (
     <div className='footer-bottom'>
-        <span>footer</span>
-        <span>footer</span>
-        <span>footer</span>
+        <span>Made with text-davinci-002, DALL-E, OneAI summarization tool, React.js, Node.js</span>
     </div>
   )
 }
